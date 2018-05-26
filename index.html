@@ -1,0 +1,163 @@
+<html>
+
+<head>
+    <style>
+        table.paleBlueRows {
+            font-family: "Times New Roman", Times, serif;
+            border: 1px solid #FFFFFF;
+            width: 750px;
+
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table.paleBlueRows td,
+        table.paleBlueRows th {
+            border: 1px solid #FFFFFF;
+            padding: 3px 2px;
+        }
+
+        table.paleBlueRows tbody td {
+            font-size: 13px;
+        }
+
+        table.paleBlueRows tr:nth-child(even) {
+            background: #D0E4F5;
+        }
+
+        table.paleBlueRows thead {
+            background: #0B6FA4;
+            border-bottom: 5px solid #FFFFFF;
+        }
+
+        table.paleBlueRows thead th {
+            font-size: 17px;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-align: center;
+            border-left: 2px solid #FFFFFF;
+        }
+
+        table.paleBlueRows thead th:first-child {
+            border-left: none;
+        }
+
+        table.paleBlueRows tfoot {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333333;
+            background: #D0E4F5;
+            border-top: 3px solid #444444;
+        }
+
+        table.paleBlueRows tfoot td {
+            font-size: 14px;
+        }
+        tbody {
+            text-align: right;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
+        }
+
+        #note {
+            position: absolute;
+            z-index: 101;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fde073;
+            text-align: center;
+            line-height: 2.5;
+            overflow: hidden;
+            -webkit-box-shadow: 0 0 5px black;
+            -moz-box-shadow: 0 0 5px black;
+            box-shadow: 0 0 5px black;
+        }
+
+
+
+        @keyframes spinner {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spinner:before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            border-top-color: #333;
+            animation: spinner .6s linear infinite;
+        }
+
+        .delete {
+            color: red;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.6.1/async.min.js"></script>
+</head>
+
+<body>
+    <div id="note">
+        <a id="close" class="spinner"></a>
+        LOADING...
+    </div>
+    <form>
+        <input id="txt-symbol" placeholder="Coin symbol" type="text" value="btc" />
+        <input id="txt-amount" placeholder="Amount" type="text" value="1" />
+        <input id="btnAdd" type="button" value="Add" />
+    </form>
+
+    <table class="paleBlueRows" id="tbl">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Change 1h</th>
+                <th>Change 24h</th>
+                <th>Change 7d</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>USD</th>
+            </tr>
+        </thead>
+        <tfoot>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input id="btn-sum" type="button" value="Sum"></td>
+                <td id="txt-sum"></td>
+        </tfoot>
+        <tbody>
+            <tr>                
+                
+            </tr>
+
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        $.get('https://api.coinmarketcap.com/v2/ticker/1/', function (data) {
+            console.log(data);
+        })
+    </script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
