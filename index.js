@@ -101,14 +101,14 @@ function addRowToTable(tableBody, data) {
     tr += '<td>' + data.price.formatMoney(2, '.', ',') + '</td>';
     tr += '<td>' + data.amount.formatMoney(2, '.', ',') + '</td>';
     tr += '<td class="money">' + (data.amount * data.price).formatMoney(2, '.', ',') + '</td>';
-    tr += `<td></td>`;
+    tr += `<td><a href="#" class="delete" data-idx="${idx}">X</a></td>`;
     tr += '</tr>'
 
     // tr = $(tr);
     // tr.find('td:last').append($(`<a href="#" class="delete" data-idx="${idx}">X</a>`))
 
-    tableBody.append(tr)
-    tableBody.find('td:last').append($(`<a href="#" class="delete" data-idx="${idx}">X</a>`))
+    tableBody.prepend(tr)
+    // tableBody.find('td:last').append($(`<a href="#" class="delete" data-idx="${idx}">X</a>`))
 }
 
 function drawTable(data) {
