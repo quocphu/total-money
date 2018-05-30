@@ -82,9 +82,7 @@ data = [
     }
 ]
 
-function addRowToTable(tableBody, data) {
-
-    var idx = tableBody.find('tr').length - 1;
+function addRowToTable(tableBody, data, idx) {
 
     var tr = '<tr>'
     tr += '<td>' + data.symbol + '</td>';
@@ -115,7 +113,7 @@ function drawTable(data) {
     var body = $('#tbl tbody');
     // Reset all row
     for (var i = 0; i < data.length; i++) {
-        addRowToTable(body, data[i])
+        addRowToTable(body, data[i], i)
     }
 }
 
@@ -196,7 +194,6 @@ $(document).ready(function () {
                 coinId = gListId[i].id;
                 break;
             }
-            console.log(gListId[i].symbol);
         }
         if (coinId == -1) {
             return alert("Coin does not exist")
