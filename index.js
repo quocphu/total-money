@@ -82,7 +82,7 @@ data = [
     }
 ]
 
-function addRowToTable(tableBody, data, idx) {
+function addRowToTable(tableBody, data) {
 
     var tr = '<tr>'
     tr += '<td>' + data.symbol + '</td>';
@@ -99,7 +99,7 @@ function addRowToTable(tableBody, data, idx) {
     tr += '<td>' + data.price.formatMoney(2, '.', ',') + '</td>';
     tr += '<td>' + data.amount.formatMoney(2, '.', ',') + '</td>';
     tr += '<td class="money">' + (data.amount * data.price).formatMoney(2, '.', ',') + '</td>';
-    tr += `<td><a href="#" class="delete" data-idx="${idx}">X</a></td>`;
+    tr += `<td><a href="#" class="delete" data-symbol="${data.symbol}">X</a></td>`;
     tr += '</tr>'
 
     // tr = $(tr);
@@ -169,8 +169,14 @@ $(document).ready(function () {
 
                 $('.delete').on('click', function (event) {
                     event.preventDefault();
-                    var rmIdx = parseInt($(this).attr('data-idx'));
-                    gOwnerIdList.splice(rmIdx, 1)
+                    var symbol = $(this).attr('data-symbol');
+                    
+                    for(var i = 0; i < gOwnerIdList.length; i++) {
+                        if (gOwnerIdList[i].symbol == symbol) {
+                            gOwnerIdList.splice(i, 1)
+                            break;
+                        }
+                    }
                     localStorage.setItem(DB_OwnerIdList, JSON.stringify(gOwnerIdList))
                     $(this).closest('tr').remove()
                 })
